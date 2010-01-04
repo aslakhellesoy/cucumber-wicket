@@ -1,16 +1,24 @@
 package com.wicketinaction;
 
-import org.apache.wicket.protocol.http.WebApplication;
+import com.wicketinaction.counting.CountingApplication;
+import com.wicketinaction.helloworld.HelloWorldApplication;
 import org.apache.wicket.util.tester.WicketTester;
 
+import cuke4duke.Before;
 import cuke4duke.Given;
 import cuke4duke.Then;
 
-public abstract class WicketSteps {
+public class WicketSteps {
 	private WicketTester tester;
 
-	protected WicketSteps(WebApplication application) {
-		tester = new WicketTester(application);
+	@Before("@counting")
+	public void useCounting() {
+		tester = new WicketTester(new CountingApplication());
+	}
+
+	@Before("@hello")
+	public void useHello() {
+		tester = new WicketTester(new HelloWorldApplication());
 	}
 
 	@Given("^I am viewing the (.*)$")

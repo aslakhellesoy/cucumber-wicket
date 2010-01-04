@@ -1,3 +1,4 @@
+@hello
 Feature: Helloworld
   In order to greet the world
   As a user
